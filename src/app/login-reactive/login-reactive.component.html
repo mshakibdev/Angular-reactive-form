@@ -1,0 +1,29 @@
+<mat-card class="login-page">
+  <mat-card-title>Login (Reactive)</mat-card-title>
+  <mat-card-content>
+    <form class="login-form data-form" [formGroup]="reactive_form">
+      <mat-form-field>
+        <input
+          matInput
+          type="email"
+          name="email"
+          placeholder="Email"
+          [formControl]="email"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          [formControl]="password"
+        />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary">Login</button>
+    </form>
+    <div class="form-val">{{ reactive_form.value | json }}</div>
+    <div class="form-val">{{ reactive_form.valid }}</div>
+  </mat-card-content>
+</mat-card>
