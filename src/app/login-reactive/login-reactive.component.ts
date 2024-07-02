@@ -17,15 +17,20 @@ export class LoginReactiveComponent implements OnInit {
   // IN REACTIVE FORM
   // EVERY SINGLE FORM VALUE IS NULLABLE BY DEFAULT for make non-nullable use `NonNullableFormBuilder`
 
+
   // TYPE OF FORM IS INFERRED BY ANGULAR BY DEFAULT
   form = this.formBuilder.group({
-    email: [
-      "",
-      {
-        validators: [Validators.required, Validators.email],
-        updateOn: "blur",
-      },
-    ],
+    email: this.formBuilder.nonNullable.control("", {
+      validators: [Validators.required, Validators.email],
+      updateOn: "blur",
+    }),
+    // email: [
+    //   "",
+    //   {
+    //     validators: [Validators.required, Validators.email],
+    //     updateOn: "blur",
+    //   },
+    // ],
     password: [
       "",
       [
@@ -35,7 +40,7 @@ export class LoginReactiveComponent implements OnInit {
       ],
     ],
   });
-  constructor(private formBuilder: NonNullableFormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {}
 
