@@ -18,15 +18,28 @@ export class LoginReactiveComponent implements OnInit {
     updateOn: "blur",
   });
   password = new FormControl("", {
-    validators: [
-      Validators.required,
-      Validators.minLength(8),
-      createPasswordStrengthValidator(),
-    ],
+    validators: [],
   });
   reactive_form = new FormGroup({
     email: this.email,
     password: this.password,
+  });
+  form = this.fb.group({
+    email: [
+      "",
+      {
+        validators: [Validators.required, Validators.email],
+        updateOn: "blur",
+      },
+    ],
+    password: [
+      "",
+      [
+        Validators.required,
+        Validators.minLength(8),
+        createPasswordStrengthValidator(),
+      ],
+    ],
   });
   constructor(private fb: FormBuilder) {}
 
