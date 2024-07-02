@@ -3,6 +3,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  NonNullableFormBuilder,
   Validators,
 } from "@angular/forms";
 import { createPasswordStrengthValidator } from "../validators/password-strength.validator";
@@ -13,7 +14,11 @@ import { createPasswordStrengthValidator } from "../validators/password-strength
   styleUrls: ["./login-reactive.component.css"],
 })
 export class LoginReactiveComponent implements OnInit {
-  form = this.fb.group({
+  // IN REACTIVE FORM
+  // EVERY SINGLE FORM VALUE IS NULLABLE BY DEFAULT for make non-nullable use `NonNullableFormBuilder`
+
+  // TYPE OF FORM IS INFERRED BY ANGULAR BY DEFAULT
+  form = this.formBuilder.group({
     email: [
       "",
       {
@@ -30,7 +35,20 @@ export class LoginReactiveComponent implements OnInit {
       ],
     ],
   });
-  constructor(private fb: FormBuilder) {}
+  constructor(private formBuilder: NonNullableFormBuilder) {}
 
   ngOnInit() {}
+
+  get email() {
+    return this.form.controls["email"];
+  }
+
+  get password() {
+    return this.form.controls["password"];
+  }
+  login() {}
+  reset() {
+    this.form.reset();
+    console.log(this.form.value);
+  }
 }
