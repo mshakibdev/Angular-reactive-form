@@ -25,6 +25,8 @@ export class CreateCourseStep1Component implements OnInit {
       },
     ],
     releasedAt: [new Date(), Validators.required],
+    downloadsAllowed: [false, Validators.requiredTrue],
+    longDescription: ["", [Validators.required, Validators.minLength(3)]],
   });
   constructor(
     private formBuilder: FormBuilder,
