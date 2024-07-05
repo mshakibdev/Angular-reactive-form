@@ -16,6 +16,9 @@
       />
       <input matEndDate placeholder="End Date" formControlName="promoEndAt" />
     </mat-date-range-input>
+    <mat-error *ngIf="form.errors?.promoPeriod && form.dirty"
+      >The start date must befire the end date</mat-error
+    >
     <mat-datepicker-toggle
       matIconSuffix
       [for]="promotionPicker"
